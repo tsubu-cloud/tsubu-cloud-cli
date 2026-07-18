@@ -1,0 +1,17 @@
+.{
+    .name = .tsubu_cloud_cli,
+    .version = "0.0.0",
+    .fingerprint = 0xe5f5da7e3626dbd4,
+    .minimum_zig_version = "0.16.0",
+    .dependencies = .{
+        .tsubu_cloud_core = .{
+            .url = "https://github.com/tsubu-cloud/tsubu-cloud-core/archive/33968bed52712051c1b9e60ec44d9aa8604c2947.tar.gz",
+            .hash = "tsubu_cloud_core-0.0.0-f59JhNNjAQAwUCwnRft3b01obTN2_p9fPI1EFWtsXo5b",
+        },
+    },
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src",
+    },
+}
