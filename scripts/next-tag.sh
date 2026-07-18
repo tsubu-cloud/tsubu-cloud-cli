@@ -6,4 +6,5 @@ next=$(( ${latest:-0} + 1 ))
 tag="v${next}"
 
 git tag "$tag" HEAD
-echo "Tagged HEAD as $tag"
+git push origin "$tag"
+echo "Tagged HEAD as $tag and pushed"
