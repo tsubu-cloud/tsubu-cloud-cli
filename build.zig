@@ -24,7 +24,7 @@ pub fn build(b: *std.Build) void {
     const core_mod = core_dep.module("core");
 
     const exe = b.addExecutable(.{
-        .name = "tsubu_cloud_local",
+        .name = "tsubu",
         .root_module = b.createModule(.{
             .root_source_file = b.path("src/main.zig"),
             .target = target,
@@ -35,7 +35,7 @@ pub fn build(b: *std.Build) void {
     exe.linkage = .static;
     b.installArtifact(exe);
 
-    const run_step = b.step("run", "Run tsubu_cloud_local");
+    const run_step = b.step("run", "Run tsubu");
     const run_cmd = b.addRunArtifact(exe);
     run_step.dependOn(&run_cmd.step);
     run_cmd.step.dependOn(b.getInstallStep());

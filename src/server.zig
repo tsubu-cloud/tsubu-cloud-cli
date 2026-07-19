@@ -20,7 +20,7 @@ pub const LoadedApp = struct {
 /// files on disk, recompiling the component on every request (there's no
 /// on-disk cwasm cache here, unlike `tsubu_cloud_server`: local runs are
 /// short-lived and the component may be being actively edited/rebuilt).
-/// Used for local development via `tsubu_cloud_local`.
+/// Used for local development via `tsubu`.
 fn resolve(gpa: std.mem.Allocator, io: std.Io, wasm_path: []const u8, config_path: []const u8) !LoadedApp {
     const wasm_bytes = try std.Io.Dir.cwd().readFileAlloc(io, wasm_path, gpa, .unlimited);
     defer gpa.free(wasm_bytes);

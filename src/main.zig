@@ -4,20 +4,19 @@ const wit_gen = @import("wit_gen.zig");
 
 fn usageAndExit() noreturn {
     std.debug.print(
-        \\usage: tsubu_cloud_local <command> ...
+        \\usage: tsubu <command> ...
         \\
         \\commands:
-        \\  run <wasm-module> <config.json>   wasmモジュールをローカルで実行する
-        \\  deploy <wasm-module> <config.json> wasmモジュールをデプロイする
-        \\  wit <config.json> [wit-dir]        tsubu.json を元に wit/deps/*/package.wit
-        \\                                      と (未存在なら) wit/guest.wit を生成する
-        \\                                      (wit-dir省略時は "wit")
+        \\  run <wasm-module> <config.json>  wasmモジュールをローカルで実行する
+        \\  wit <config.json> [wit-dir]      tsubu.json を元に wit/deps/*/package.wit
+        \\                                    と (未存在なら) wit/guest.wit を生成する
+        \\                                    (wit-dir省略時は "wit")
         \\
     , .{});
     std.process.exit(1);
 }
 
-const Command = enum { run, deploy, wit };
+const Command = enum { run, wit };
 
 pub fn main(init: std.process.Init) !void {
     const gpa = init.gpa;
@@ -27,15 +26,11 @@ pub fn main(init: std.process.Init) !void {
     const command = std.meta.stringToEnum(Command, args[1]) orelse usageAndExit();
 
     switch (command) {
-        .run, .deploy => {
+        .run => {
             if (args.len < 4) usageAndExit();
             const wasm_module = args[2];
             const config_path = args[3];
-            switch (command) {
-                .run => try server_local.serve(gpa, init.io, wasm_module, config_path),
-                .deploy => {},
-                .wit => unreachable,
-            }
+            try server_local.serve(gpa, init.io, wasm_module, config_path);
         },
         .wit => {
             if (args.len < 3) usageAndExit();

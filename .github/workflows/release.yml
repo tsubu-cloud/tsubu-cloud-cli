@@ -25,7 +25,7 @@ jobs:
       - name: Stage artifact
         run: |
           mkdir -p dist
-          cp result/bin/tsubu_cloud_local "dist/tsubu_cloud_local-${{ matrix.target }}"
+          cp result/bin/tsubu "dist/tsubu-${{ matrix.target }}"
 
       - uses: actions/upload-artifact@v4
         with:
