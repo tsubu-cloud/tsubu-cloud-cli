@@ -1,6 +1,6 @@
 const std = @import("std");
 const core = @import("core");
-const config_loader = @import("config_loader.zig");
+const config_loader = @import("../config_loader.zig");
 
 /// Static prefix of the `tsubu-cloud:fetcher` package: the shared
 /// `interface types` block plus the opening of `interface fetcher`. Per-alias

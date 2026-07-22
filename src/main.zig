@@ -1,6 +1,6 @@
 const std = @import("std");
 const server_local = @import("server.zig");
-const wit_gen = @import("wit_gen.zig");
+const wit_gen = @import("wit_gen/root.zig");
 
 fn usageAndExit() noreturn {
     std.debug.print(
